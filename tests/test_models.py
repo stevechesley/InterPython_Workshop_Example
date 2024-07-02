@@ -76,6 +76,7 @@ def test_max_mag(test_df, test_colname, expected):
     from lcanalyzer.models import max_mag
     assert max_mag(test_df, test_colname) == expected
 
+# Parametrization for mean_mag function testing
 @pytest.mark.parametrize(
     "test_df, test_colname, expected",
     [
@@ -84,7 +85,7 @@ def test_max_mag(test_df, test_colname, expected):
                             [3, 4, 1]], 
                       columns=list("abc")),
         "a",
-        7),
+        pytest.approx(3.66,0.01)),
         (pd.DataFrame(data=[[0, 0, 0], 
                             [0, 0, 0], 
                             [0, 0, 0]], 
@@ -92,7 +93,7 @@ def test_max_mag(test_df, test_colname, expected):
         "b",
         0),
     ])
-def test_max_mag(test_df, test_colname, expected):
-    """Test max function works for array of zeroes and positive integers."""
-    from lcanalyzer.models import max_mag
-    assert max_mag(test_df, test_colname) == expected
+def test_mean_mag(test_df, test_colname, expected):
+    """Test mean function works for array of zeroes and positive integers."""
+    from lcanalyzer.models import mean_mag
+    assert mean_mag(test_df, test_colname) == expected
