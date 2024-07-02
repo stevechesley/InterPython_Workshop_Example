@@ -5,6 +5,12 @@ The Model layer is responsible for the 'business logic' part of the software.
 The lightcurves are saved in a table (2D array) where each row corresponds to a single observation. 
 Depending on the dataset (LSST or Kepler), a table can contain observations of a single or several objects, 
 in a single or different bands.
+
+Functions: 
+  load_dataset - Load a table from CSV file
+  mean_mag - Calculate the mean magnitude of a lightcurve
+  max_mag - Calculate the max magnitude of a lightcurve
+  min_mag - Calculate the min magnitude of a lightcurve
 """
 
 import pandas as pd
@@ -21,17 +27,27 @@ def load_dataset(filename):
 
 
 def mean_mag(data,mag_col):
-    """Calculate the mean magnitude of a lightcurve"""
+    """Calculate the mean magnitude of a lightcurve
+
+    :param data: pd.DataFrame with observed magnitudes for a single source.
+    :param mag_col: specify column name in the columnmag_col in data.
+    """
     return data[mag_col].mean()
 
 
 def max_mag(data,mag_col):
-    """Calculate the max magnitude of a lightcurve"""
+    """Calculate the max magnitude of a lightcurve
+
+    :param data: pd.DataFrame with observed magnitudes for a single source.
+    :param mag_col: specify column name in data
+    :returns: max value of of the column.
+    """
     return data[mag_col].max()
 
 
 def min_mag(data,mag_col):
     """Calculate the min magnitude of a lightcurve
+
     :param data: pd.DataFrame with observed magnitudes for a single source.
     :param mag_col: a string with the name of the column for calculating the min value.
     :returns: The min value of the column.
